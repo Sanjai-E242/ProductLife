@@ -1,0 +1,15 @@
+# Dependencies & builds
+node_modules/
+target/
+dist/
+
+# Environment files & Secrets
+.env
+*.local
+application-local.properties
+
+# Logs & temp
+*.log
+.DS_Store
+.vscode/
+.idea/
