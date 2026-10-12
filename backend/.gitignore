@@ -35,4 +35,7 @@ build/
 ### Local Environment & Secrets ###
 .env
 application-local.properties
+data/
+*.mv.db
+
 

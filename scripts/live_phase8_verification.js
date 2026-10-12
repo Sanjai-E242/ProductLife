@@ -116,8 +116,9 @@ async function run() {
 
   // Load configured admin credentials from environment or backend/.env securely
   let adminUsername = process.env.ADMIN_USERNAME || 'admin';
-  let adminPassword = process.env.ADMIN_PASSWORD;
-  const envPath = 'c:\\Users\\admin\\OneDrive\\Documents\\ProductLife\\backend\\.env';
+  let adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  const path = require('path');
+  const envPath = path.resolve(__dirname, '../backend/.env');
   if (fs.existsSync(envPath)) {
     const lines = fs.readFileSync(envPath, 'utf8').split('\n');
     for (const l of lines) {

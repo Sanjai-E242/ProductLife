@@ -1,6 +1,10 @@
 # ProductLife Backend Launcher
 # Safely loads DB_PASSWORD from environment or local uncommitted .env file
 
+if (-not $env:JAVA_HOME -or -not (Test-Path "$env:JAVA_HOME\bin\javac.exe")) {
+    $env:JAVA_HOME = "C:\Program Files\Java\jdk-17"
+}
+
 if (Test-Path "$PSScriptRoot\.env") {
     Get-Content "$PSScriptRoot\.env" | ForEach-Object {
         $line = $_.Trim()
@@ -13,12 +17,5 @@ if (Test-Path "$PSScriptRoot\.env") {
     }
 }
 
-if (-not $env:DB_PASSWORD) {
-    Write-Warning "DB_PASSWORD environment variable is not set. Spring Boot will attempt connecting with blank password."
-}
-
-if (-not $env:ADMIN_PASSWORD) {
-    Write-Warning "ADMIN_PASSWORD environment variable is not set. Administrator login endpoints will fail safely."
-}
-
 .\mvnw.cmd spring-boot:run
+
